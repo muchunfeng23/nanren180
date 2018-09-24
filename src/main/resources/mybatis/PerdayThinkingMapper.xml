@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <mapper namespace="cn.no7player.mapper.UserMapper"> -->
+<mapper namespace="com.mcf.mybatis.mapper.PerdayThinkingMapper">
+	<insert id="addPerdayThinking" parameterType="com.mcf.mybatis.model.PerdayThinking">
+		insert into perdayThinking(openId,whichDay,content,addDate,forDate)
+		values(#{openId},#{whichDay},#{content},now(),#{forDate})
+	</insert>
+	<update id="updatePerdayThinking" parameterType="com.mcf.mybatis.model.PerdayThinking">
+		update perdayThinking
+		 set id=1000,content = #{content},whichDay=#{whichDay},addDate=now(),forDate=#{whichDay}
+		where openId=#{openId} and whichDay=#{whichDay}
+	</update>
+	<!-- 获取某一天的thinking内容 -->
+	<select id="getOneDayThinking" parameterType="map" resultType="string">
+		select content from perdayThinking where openId = #{openId} and
+		whichDay = #{whichDay} order by id desc limit 1
+	</select>
+
+	<!-- 获取所有写过thinking的日期 -->
+	<select id="getAllThinkingDates" parameterType="string"
+		resultType="string">
+		select whichDay from perdayThinking where openId =
+		#{openId}
+	</select>
+
+
+</mapper>

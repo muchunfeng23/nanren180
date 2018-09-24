@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <mapper namespace="cn.no7player.mapper.UserMapper"> -->
+<mapper namespace="com.mcf.mybatis.mapper.UserMapper">
+  <select id="findUserInfo" resultType="com.mcf.mybatis.model.UserInfo">
+    select * from userInfo;
+  </select>
+  
+  <insert id="addUser" parameterType="com.mcf.mybatis.model.UserInfo" >
+  		insert into userInfo(openId,nickName,gender,language,province,city,country,avatarUrl,registerDate,registerDateStr)  
+             values(#{openId},#{nickName},#{gender},#{language},#{province},#{city},#{country},#{avatarUrl},#{registerDate},#{registerDateStr})  
+  </insert>
+  
+  <select id="isExist" resultType="int" parameterType="string">
+  	select count(1) from userInfo where openId = #{openId}
+  </select>
+  
+  <insert id="addLoginLog" parameterType="string" >
+  		insert into loginLog(openId,loginTime)  
+             values(#{openId},now())  
+  </insert>
+  
+   <select id="getRegisterDate" resultType="string" parameterType="string">
+    select registerDateStr from userInfo where openId = #{openId}
+  </select>
+</mapper>

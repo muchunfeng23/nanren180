@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <mapper namespace="cn.no7player.mapper.UserMapper"> -->
+<mapper namespace="com.mcf.mybatis.mapper.PoJieRecordMapper">
+  <insert id="addPoJieRecord" parameterType="com.mcf.mybatis.model.PoJieRecord" >
+  		insert into poJieRecords(openId,poJieDate,poJieDateStr)  
+             values(#{openId},now(),now())  
+  </insert>
+	<select id="getAllPoJieRecords" resultType="com.mcf.mybatis.model.PoJieRecord" parameterType="string">
+    	select * from poJieRecords where openId = #{openId};
+  </select>
+</mapper>

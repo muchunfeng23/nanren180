@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <mapper namespace="cn.no7player.mapper.UserMapper"> -->
+<mapper namespace="com.mcf.mybatis.mapper.ThinkingMapper">
+  <insert id="addThinking" parameterType="com.mcf.mybatis.model.Thinking" >
+  		insert into myThinkings(openId,myThinking,addDate,addDateStr)  
+             values(#{openId},#{myThinking},now(),now())  
+  </insert>
+	<select id="getAllThinkings" resultType="com.mcf.mybatis.model.Thinking" parameterType="string">
+    	select * from myThinkings where openId = #{openId};
+  </select>
+</mapper>
